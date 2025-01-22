@@ -165,8 +165,8 @@ def load_data(bc_params, verbose=False):
         processed_trajs = get_human_human_trajectories(**layout_params, silent=not verbose)
         inputs, targets = processed_trajs["ep_states"], processed_trajs["ep_actions"]
 
-        # Append layout name to ep_states
-        inputs["ep_states"]["layout_name"] = layout
+        # # Append layout name to ep_states
+        # inputs["ep_states"]["layout_name"] = layout
         
         combined_inputs.extend(inputs)
         combined_targets.extend(targets)
