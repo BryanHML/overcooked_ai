@@ -400,17 +400,22 @@ class MotionPlanner(object):
         position and orientation to any feature in feature_pos_list and perform an interact action
         """
         start_pos = start_pos_and_or[0]
-        #replace assertion where != "X" with if == "X" then return with abnormally large min_cost
+
+        # replace assertion where != "X" with if == "X" then return with abnormally large min_cost
         # try:
         #     # Check terrain type
         #     if self.mdp.get_terrain_type_at_pos(start_pos) == "X":
-        #         min_cost = 9999999999999999
+        #         min_cost = 100
         #         return min_cost, best_feature
         # except IndexError:
         #     # Handle IndexError when get_terrain_type_at_pos throws out of range
-        #     min_cost = 9999999999999999
+        #     min_cost = 100
         #     return min_cost,best_feature
-        assert self.mdp.get_terrain_type_at_pos(start_pos) != "X"
+
+
+        # assert self.mdp.get_terrain_type_at_pos(start_pos) != "X"
+
+
         min_dist = np.Inf
         best_feature = None
         for feature_pos in feature_pos_list:
