@@ -115,13 +115,13 @@ class RlLibAgent(Agent):
         )
         agent_action = Action.INDEX_TO_ACTION[action_idx]
 
-        #OWN EDITS BELOW 
-        #validate the predicted action
-        valid_actions = env.get_actions(state)[self.agent_index] # Get valid actions
+        # #OWN EDITS BELOW 
+        # #validate the predicted action
+        # valid_actions = env.get_actions(state)[self.agent_index] # Get valid actions
 
-        if agent_action not in valid_actions:
-            print(f"Invalid action {agent_action}, choosing a random valid action")
-            agent_action = random.choice(valid_actions) #Randomly choose a valid action
+        # if agent_action not in valid_actions:
+        #     print(f"Invalid action {agent_action}, choosing a random valid action")
+        #     agent_action = random.choice(valid_actions) #Randomly choose a valid action
 
         agent_action_info = {"action_probs": action_probabilities}
         self.rnn_state = rnn_state
