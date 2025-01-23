@@ -36,8 +36,8 @@ def compute_action_prediction_accuracy(bc_agent, trajectories):
     """
     # Extract the states and actions from the trajectories
     
-    ep_states = trajectories['ep_states'][0:2]  # List of lists of OvercookedState objects
-    ep_actions = trajectories['ep_actions'][0:2]  # List of lists of tuples representing actual actions
+    ep_states = trajectories['ep_states']  # List of lists of OvercookedState objects
+    ep_actions = trajectories['ep_actions']  # List of lists of tuples representing actual actions
 
     total_actions = 0
     correct_predictions = 0
@@ -113,13 +113,13 @@ def predict_accuracy_all_layout(model_path, dataset_path, train_or_test):
     #     ]
 
     #DEBUG one layout first
-    layouts = ["random3"]
+    layouts = ["cramped_room"]
 
     # Loop to append each layout to the model_path
     for layout in layouts:
         
         #Create variable that identifies path to specific layout agent
-        specific_agent_layout_path = f"{model_path}multi_layout"
+        specific_agent_layout_path = f"{model_path}cramped_room"
 
         #Load trained model and its parameters 
         model, bc_params = load_bc_model(specific_agent_layout_path, verbose=True)
