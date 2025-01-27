@@ -41,7 +41,10 @@ if __name__ == "__main__":
     #     train_bc_model(bc_dir, bc_params, True)
 
     for layout in [
-        "cramped_room"
+        "random3",
+        "coordination_ring",
+        "random0",
+        "asymmetric_advantages",
     ]:
         current_file_dir = os.path.dirname(os.path.abspath(__file__))
         # this is where
