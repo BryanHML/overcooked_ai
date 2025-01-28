@@ -113,6 +113,19 @@ def predict_accuracy_all_layout(model_path, dataset_path, train_or_test):
 
         # Initialize the Overcooked environment
         base_ae = get_base_ae(bc_params["mdp_params"], bc_params["env_params"])
+
+
+        # {'layout_name': 'cramped_room', 'old_dynamics': True}
+        print("mdp_params:", bc_params["mdp_params"])
+
+        # {'horizon': 400, 'mlam_params': {'start_orientations': False, 'wait_allowed': False, 'counter_goals': [], 'counter_drop': [], 'counter_pickup': [], 'same_motion_goals': True}}
+        print("env_params:", bc_params["env_params"])
+
+        #<overcooked_ai_py.agents.benchmarking.AgentEvaluator object at 0x0000023FB94F14C8>
+        # print("base_ae:", base_ae)
+
+
+
         base_env = base_ae.env
 
         #Wrap loaded model as RllibAgent
@@ -129,12 +142,19 @@ def predict_accuracy_all_layout(model_path, dataset_path, train_or_test):
             featurize_states=False #OvercookedState Object if False
             )
         
-        #Compute action prediction accuracy for specific layout
-        current_layout_accuracy = compute_action_prediction_accuracy(compute_agent, trajectories_compute)
+        # the ep states key in trajectories contains list of overcookedstates 
+        # print("states", trajectories_compute["ep_states"][0][0])
 
-        #Round to 2dp and add percentage
-        formatted_accuracy = f"{current_layout_accuracy:.2f}%"
-        action_predict_accuracy_dict[layout] = formatted_accuracy
+        #state looks like this 
+        #Players: ((1, 2) facing (0, -1) holding None, (3, 1) facing (0, -1) holding None), Objects: [], Bonus orders: [] All orders: [('onion',), ('onion', 'onion'), ('onion', 'onion', 'onion'), ('tomato',), 
+        # ('tomato', 'tomato'), ('tomato', 'tomato', 'tomato'), ('onion', 'tomato'), ('onion', 'onion', 'tomato'), ('onion', 'tomato', 'tomato')] Timestep: 0
+
+        # #Compute action prediction accuracy for specific layout
+        # current_layout_accuracy = compute_action_prediction_accuracy(compute_agent, trajectories_compute)
+
+        # #Round to 2dp and add percentage
+        # formatted_accuracy = f"{current_layout_accuracy:.2f}%"
+        # action_predict_accuracy_dict[layout] = formatted_accuracy
 
     return action_predict_accuracy_dict
 

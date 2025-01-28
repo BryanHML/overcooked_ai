@@ -413,7 +413,7 @@ class MotionPlanner(object):
         #     return min_cost,best_feature
 
 
-        # assert self.mdp.get_terrain_type_at_pos(start_pos) != "X"
+        assert self.mdp.get_terrain_type_at_pos(start_pos) != "X"
 
 
         min_dist = np.Inf
